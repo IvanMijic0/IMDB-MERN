@@ -1,22 +1,26 @@
 import express from 'express';
+import bodyParser from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
-dotenv.config();
-
 const server = express();
-const port = 5000;
+const env = dotenv.config();
 
+env.error &&
+(
+    console.error("Error loading .env file:", env.error),
+        process.exit(1)
+);
 
-server.get("/health", (req, res) => {
-    res.json({ "ServerHealth": "Server is up and running!" });
-});
+server
+    .use(bodyParser.urlencoded({ extended: false }))
+    .use(bodyParser.json())
 
-mongoose.connect("mongodb://ivan:piper159951@127.0.0.1:27017")
-    .then(() => {
-        console.log("MongoDB is ready to serve.");
-    });
+    .get("/health", (req, res) =>
+        res.json({ "ServerHealth": "Server is up and running!" }))
 
-server.listen(port, () => {
-    console.log(`Listening : ${ port }`);
-});
+    .listen(parseInt(process.env.PORT), () => console.log(`Listening : ${ process.env.PORT }`));
+
+mongoose.connect(process.env.MONGODB_URI)
+    .then(() => console.log("MongoDB is ready to serve."))
+    .catch(err => console.error("MongoDB connection error:", err));

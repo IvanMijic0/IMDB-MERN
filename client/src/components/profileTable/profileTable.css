@@ -1,0 +1,27 @@
+.profile-table {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    width: 40%;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 50px auto;
+}
+
+.table-container {
+    margin-left: 35%;
+}
+
+.table-row {
+    display: flex;
+    margin: 20px 0;
+}
+
+.table-label {
+    font-weight: bold;
+    width: 120px;
+}
+
+.table-value {
+    flex: 1;
+    padding-left: 10px;
+}

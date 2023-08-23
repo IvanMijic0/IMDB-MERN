@@ -1,6 +1,9 @@
 import React from "react";
-import "./Header.css";
 import { Link } from "react-router-dom";
+
+import "./Header.css";
+import UserDropdown from '../dropdown/dropdown';
+
 
 const Header = () => {
     return (
@@ -11,6 +14,15 @@ const Header = () => {
                 <Link to="/movies/popular" style={ { textDecoration: "none" } }><span>Popular</span></Link>
                 <Link to="/movies/top_rated" style={ { textDecoration: "none" } }><span>Top Rated</span></Link>
                 <Link to="/movies/upcoming" style={ { textDecoration: "none" } }><span>Upcoming</span></Link>
+            </div>
+            <div className="headerRight">
+                <div className="userIcon">
+                    <img
+                        className="userIcon__image"
+                        alt="User icon"
+                        src="https://cdn.icon-icons.com/icons2/2468/PNG/512/user_icon_149329.png"/>
+                    <UserDropdown/>
+                </div>
             </div>
         </div>
     );

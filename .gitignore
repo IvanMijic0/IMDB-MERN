@@ -6,6 +6,7 @@ client/.pnp
 client/.pnp.js
 server/node_modules
 server/.env
+server/docker-compose.yaml
 .idea
 
 # testing

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import "./movieList.css";
-import { useParams } from "react-router-dom";
-import Cards from "../card/card";
 
-const MovieList = () => {
+import "./favorites.css";
+import Cards from '../../components/card/card';
+import { useParams } from 'react-router-dom';
+
+const Favorites = () => {
 
     const [movieList, setMovieList] = useState([]);
     const { type } = useParams();
@@ -24,7 +25,7 @@ const MovieList = () => {
 
     return (
         <div className="movie__list">
-            <h2 className="list__title">{ (type ? type : "POPULAR").toUpperCase() }</h2>
+            <h2 className="list__title"> Favorites </h2>
             <div className="list__cards">
                 {
                     movieList.map(movie => (
@@ -36,4 +37,4 @@ const MovieList = () => {
     );
 };
 
-export default MovieList;
+export default Favorites;
