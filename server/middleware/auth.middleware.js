@@ -9,7 +9,7 @@ export const authMiddleware = async (req, res, next) => {
     }
 
     try {
-        const decoded = verify(token);
+        const decoded = await verify(token);
         req.user = decoded.data;
         next();
     } catch (error) {

@@ -3,9 +3,3 @@ export const ROLES = {
     ADMIN: 'admin',
     GUEST: 'guest'
 };
-
-export const PERMISSIONS = {
-    user: [],
-    admin: ['/GET'],
-    guest: []
-};

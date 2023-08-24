@@ -1,12 +1,14 @@
-import { PERMISSIONS } from '../utils/enums.js';
+import { ROLES } from '../utils/enums.js';
 
-export const checkRole = (req, res, next) => {
-    const { user, method, url } = req;
-    const endPoint = method.concat(url);
+const roleGuard = (requiredRole) => (req, res, next) => {
+    const { user } = req;
 
-    if ( PERMISSIONS[user.role].includes(endPoint) ) {
+    if (user.role === requiredRole) {
         return next();
     }
 
     res.status(403).send('Not allowed');
 };
+
+export const adminGuard = roleGuard(ROLES.ADMIN);
+export const userGuard = roleGuard(ROLES.USER);

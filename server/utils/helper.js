@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+
 import { JWT_SECRET, SALT_ROUNDS } from './constants.js';
 
 const env = dotenv.config();
