@@ -24,21 +24,21 @@ export const login = async (req, res) => {
             return res.status(401).send('Failed login.');
         }
 
-        const token = await sign({ data: { email, password, role: user.role } });
-        res.status(200).header('Authorization', `Bearer ${ token }`).send();
+        const token = await sign({ data: { _id: user._id, role: user.role } });
+        res.status(200).header('Authorization', `Bearer ${ token }`).json({ access_token: token });
     } catch ( error ) {
         console.error('Error during login:', error);
         res.status(500).send('Login error.');
     }
 };
 
-export const validate = async (req, res) =>  {
-    const { token } = req.body;
+export const validate = async (req, res) => {
+    const { access_token } = req.body;
 
     try {
-        const decoded = await verify(token);
+        const decoded = await verify(access_token);
         res.status(200).json(decoded);
-    } catch (error) {
+    } catch ( error ) {
         console.error('Token validation error:', error);
         res.status(410).send('Invalid Credentials.');
     }
