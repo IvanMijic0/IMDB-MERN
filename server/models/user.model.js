@@ -7,7 +7,7 @@ const user
     = new Schema({
     _id: {
         type: String,
-        default: uuidv4()
+        default: uuidv4
     },
     email: String,
     password: String,
@@ -22,4 +22,6 @@ const user
     }
 });
 
-export const User = mongoose.model('users', user);
+const User = mongoose.model('users', user);
+
+export default User;

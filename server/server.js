@@ -3,9 +3,11 @@ import bodyParser from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
+import userRoutes from './routes/user.routes.js';
+import authRoutes from './routes/auth.routes.js';
+
 const server = express();
 const env = dotenv.config();
-
 env.error &&
 (
     console.error("Error loading .env file:", env.error),
@@ -16,10 +18,12 @@ server
     .use(bodyParser.urlencoded({ extended: false }))
     .use(bodyParser.json())
 
-    .get("/health", (req, res) =>
+    .get('/health', (req, res) =>
         res.json({ "ServerHealth": "Server is up and running!" }))
+    .use('/users', userRoutes)
+    .use('/auth', authRoutes)
 
-    .listen(parseInt(process.env.PORT), () => console.log(`Listening : ${ process.env.PORT }`));
+    .listen(process.env.PORT, () => console.log(`Listening : ${ process.env.PORT }`));
 
 mongoose.connect(process.env.MONGODB_URI)
     .then(() => console.log("MongoDB is ready to serve."))
