@@ -6,6 +6,6 @@ const router = express.Router();
 router
     .post('/register', registerUser)
     .post('/login', login)
-    .post('validate', validate);
+    .post('/validate', validate);
 
 export default router;
