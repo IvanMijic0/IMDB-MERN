@@ -4,6 +4,8 @@
     align-items: center;
     display: flex;
     justify-content:space-between;
+    border-bottom: 1px solid rgba(213, 140, 5, 0.3);
+    border-radius: 10px;
 }
 
 .headerLeft, .headerRight {
@@ -27,9 +29,4 @@ a > span:hover {
     width: 80px;
     cursor: pointer;
 }
-
-.user__avatar {
-    font-size: 2rem;
-}
-
 

@@ -7,17 +7,13 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-}
-
-.userIcon:hover .userDropdown {
-    opacity: 1;
-    pointer-events: auto;
+    border: 1px solid rgba(213, 140, 5, 0.46);
 }
 
 .userDropdown {
     position: absolute;
-    top: 60px;
-    right: 0;
+    top: 63px;
+    right: 60px;
     background-color: #222;
     border-radius: 4px;
     padding: 10px;
@@ -27,7 +23,10 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 1;
     opacity: 0;
-    transition: opacity 0.3s ease-in;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    border-right: 1px solid rgba(213, 140, 5, 0.46);
+    border-left: 1px solid rgba(213, 140, 5, 0.46);
 }
 
 .userDropdown a {

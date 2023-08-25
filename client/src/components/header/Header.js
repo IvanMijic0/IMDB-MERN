@@ -16,13 +16,7 @@ const Header = () => {
                 <Link to="/movies/upcoming" style={ { textDecoration: "none" } }><span>Upcoming</span></Link>
             </div>
             <div className="headerRight">
-                <div className="userIcon">
-                    <img
-                        className="userIcon__image"
-                        alt="User icon"
-                        src="https://cdn.icon-icons.com/icons2/2468/PNG/512/user_icon_149329.png"/>
                     <UserDropdown/>
-                </div>
             </div>
         </div>
     );

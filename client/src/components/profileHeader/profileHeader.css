@@ -1,6 +1,6 @@
 .user-profile {
     background-color: #1a1a1a;
-    color: #ffffff;
+    color: whitesmoke;
     width: 40%;
     padding: 20px;
     justify-content: center;
@@ -9,8 +9,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-right: 1px solid rgba(213, 140, 5, 0.46);
+    border-left: 1px solid rgba(213, 140, 5, 0.46);
 }
-
 .profile-header {
     display: flex;
     flex-direction: column;
@@ -24,6 +25,7 @@
     height: 100px;
     border-radius: 50%;
     margin-bottom: 10px;
+    border: 1px solid rgba(213, 140, 5, 0.8);
 }
 
 .profile-name {
