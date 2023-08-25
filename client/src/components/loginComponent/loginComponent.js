@@ -6,12 +6,13 @@ class LoginComponent extends React.Component {
         super(props);
         this.state = {
             mode: 'login',
-            username: '',
-            password: '',
-            fullName: '',
-            email: '',
-            createPassword: '',
-            repeatPassword: ''
+        };
+        this.reset();
+    }
+
+    reset() {
+        this.state = {
+            mode: 'login',
         };
     }
 
@@ -20,9 +21,12 @@ class LoginComponent extends React.Component {
         this.setState({ mode: newMode });
     }
 
-    handleInputChange = (e) => {
-        const { name, value } = e.target;
-        this.setState({ [name]: value });
+    updateInputValue = (key, value) => {
+        this.setState({
+            [key]: value
+        }, () => {
+            this.props.setFormData(this.state);
+        });
     };
 
     render() {
@@ -42,7 +46,7 @@ class LoginComponent extends React.Component {
                         mode={ this.state.mode }
                         onSubmit={ this.props.onSubmit }
                         formData={ this.state }
-                        onInputChange={ this.handleInputChange }
+                        updateInputValue={ (key, e) => this.updateInputValue(key, e) }
                     />
                 </section>
             </div>
@@ -64,16 +68,14 @@ class LoginForm extends React.Component {
                             type="text" id="username"
                             label="user name"
                             disabled={ this.props.mode === 'signup' }
-                            value={ this.props.formData.username }
-                            onChange={ this.props.onInputChange }
+                            onChange={ e => this.props.updateInputValue('username', e.target.value) }
                         />
                         <Input
                             type="password"
                             id="password"
                             label="password"
                             disabled={ this.props.mode === 'signup' }
-                            value={ this.props.formData.password }
-                            onChange={ this.props.onInputChange }
+                            onChange={ e => this.props.updateInputValue('password', e.target.value) }
                         />
                     </div>
                     <div className="form-group form-group--signup">
@@ -82,32 +84,28 @@ class LoginForm extends React.Component {
                             id="fullname"
                             label="full name"
                             disabled={ this.props.mode === 'login' }
-                            value={ this.props.formData.fullName }
-                            onChange={ this.props.onInputChange }
+                            onChange={ e => this.props.updateInputValue('fullName', e.target.value) }
                         />
                         <Input
                             type="email"
                             id="email"
                             label="email"
                             disabled={ this.props.mode === 'login' }
-                            value={ this.props.formData.email }
-                            onChange={ this.props.onInputChange }
+                            onChange={ e => this.props.updateInputValue('email', e.target.value) }
                         />
                         <Input
                             type="password"
                             id="createpassword"
                             label="password"
                             disabled={ this.props.mode === 'login' }
-                            value={ this.props.formData.createPassword }
-                            onChange={ this.props.onInputChange }
+                            onChange={ e => this.props.updateInputValue('createPassword', e.target.value) }
                         />
                         <Input
                             type="password"
                             id="repeatpassword"
                             label="repeat password"
                             disabled={ this.props.mode === 'login' }
-                            value={ this.props.formData.repeatPassword }
-                            onChange={ this.props.onInputChange }
+                            onChange={ e => this.props.updateInputValue('repeatPassword', e.target.value) }
                         />
                     </div>
                 </div>

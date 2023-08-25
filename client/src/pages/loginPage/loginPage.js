@@ -5,14 +5,11 @@ const mode = 'login';
 
 const LoginPage = () => {
 
-    const [formData, setFormData] = useState({
-        username: '',
-        password: '',
-    });
+    const [formData, setFormData] = useState({});
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        console.log(formData.username);
+        e.preventDefault();
+        console.log(formData);
         // try {
         //     const response = await axios.post('/your-backend-route', formData); // Replace with your actual route
         //     console.log('Response from backend:', response.data);
@@ -26,7 +23,6 @@ const LoginPage = () => {
             <LoginComponent
                 mode={ mode }
                 onSubmit={ handleSubmit }
-                formData={ formData }
                 setFormData={ setFormData }
             />
         </div>
