@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import './dropdown.css';
 
+
 const UserDropdown = () => {
 
-    const [userRole, setUserRole] = useState("");
     const [dropdownVisible, setDropdownVisible] = useState(false);
+    const [userRole, setUserRole] = useState("");
 
     return (
         <div
@@ -14,7 +15,7 @@ const UserDropdown = () => {
             onMouseLeave={ () => setDropdownVisible(false) }
         >
             <UserIcon/>
-            <DropdownContent userRole={ userRole } visible={ dropdownVisible }/>
+            <DropdownContent userRole={ userRole } visible={ dropdownVisible } setVisible={ setDropdownVisible }/>
         </div>
     );
 };
@@ -29,7 +30,7 @@ const UserIcon = () => (
     </div>
 );
 
-const DropdownContent = ({ userRole, visible }) => (
+const DropdownContent = ({ userRole, visible, setVisible }) => (
     <div
         className="userDropdown"
         style={ {
@@ -38,7 +39,7 @@ const DropdownContent = ({ userRole, visible }) => (
         } }
     >
         { userRole === "" ? (
-            <Link to="user/login">Register</Link>
+            <Link to="user/login" onClick={ () => setVisible(false) }>Login</Link>
         ) : (
             <>
                 <Link to="user/profile">Profile</Link>

@@ -1,11 +1,17 @@
 import React from 'react';
-import './loginComponent.css'
+import './loginComponent.css';
 
 class LoginComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            mode: this.props.mode
+            mode: 'login',
+            username: '',
+            password: '',
+            fullName: '',
+            email: '',
+            createPassword: '',
+            repeatPassword: ''
         };
     }
 
@@ -13,6 +19,11 @@ class LoginComponent extends React.Component {
         const newMode = this.state.mode === 'login' ? 'signup' : 'login';
         this.setState({ mode: newMode });
     }
+
+    handleInputChange = (e) => {
+        const { name, value } = e.target;
+        this.setState({ [name]: value });
+    };
 
     render() {
         return (
@@ -27,7 +38,12 @@ class LoginComponent extends React.Component {
                             <label htmlFor="form-toggler"></label>
                         </div>
                     </header>
-                    <LoginForm mode={ this.state.mode } onSubmit={ this.props.onSubmit }/>
+                    <LoginForm
+                        mode={ this.state.mode }
+                        onSubmit={ this.props.onSubmit }
+                        formData={ this.state }
+                        onInputChange={ this.handleInputChange }
+                    />
                 </section>
             </div>
         );
@@ -44,17 +60,55 @@ class LoginForm extends React.Component {
             <form onSubmit={ this.props.onSubmit }>
                 <div className="form-block__input-wrapper">
                     <div className="form-group form-group--login">
-                        <Input type="text" id="username" label="user name" disabled={ this.props.mode === 'signup' }/>
-                        <Input type="password" id="password" label="password"
-                               disabled={ this.props.mode === 'signup' }/>
+                        <Input
+                            type="text" id="username"
+                            label="user name"
+                            disabled={ this.props.mode === 'signup' }
+                            value={ this.props.formData.username }
+                            onChange={ this.props.onInputChange }
+                        />
+                        <Input
+                            type="password"
+                            id="password"
+                            label="password"
+                            disabled={ this.props.mode === 'signup' }
+                            value={ this.props.formData.password }
+                            onChange={ this.props.onInputChange }
+                        />
                     </div>
                     <div className="form-group form-group--signup">
-                        <Input type="text" id="fullname" label="full name" disabled={ this.props.mode === 'login' }/>
-                        <Input type="email" id="email" label="email" disabled={ this.props.mode === 'login' }/>
-                        <Input type="password" id="createpassword" label="password"
-                               disabled={ this.props.mode === 'login' }/>
-                        <Input type="password" id="repeatpassword" label="repeat password"
-                               disabled={ this.props.mode === 'login' }/>
+                        <Input
+                            type="text"
+                            id="fullname"
+                            label="full name"
+                            disabled={ this.props.mode === 'login' }
+                            value={ this.props.formData.fullName }
+                            onChange={ this.props.onInputChange }
+                        />
+                        <Input
+                            type="email"
+                            id="email"
+                            label="email"
+                            disabled={ this.props.mode === 'login' }
+                            value={ this.props.formData.email }
+                            onChange={ this.props.onInputChange }
+                        />
+                        <Input
+                            type="password"
+                            id="createpassword"
+                            label="password"
+                            disabled={ this.props.mode === 'login' }
+                            value={ this.props.formData.createPassword }
+                            onChange={ this.props.onInputChange }
+                        />
+                        <Input
+                            type="password"
+                            id="repeatpassword"
+                            label="repeat password"
+                            disabled={ this.props.mode === 'login' }
+                            value={ this.props.formData.repeatPassword }
+                            onChange={ this.props.onInputChange }
+                        />
                     </div>
                 </div>
                 <button className="button button--primary full-width"
@@ -64,8 +118,17 @@ class LoginForm extends React.Component {
     }
 }
 
-const Input = ({ id, type, label, disabled }) => (
-    <input className="form-group__input" type={ type } id={ id } placeholder={ label } disabled={ disabled }/>
+const Input = ({ id, type, label, name, disabled, value, onChange }) => (
+    <input
+        className="form-group__input"
+        type={ type }
+        id={ id }
+        name={ name }
+        placeholder={ label }
+        disabled={ disabled }
+        value={ value }
+        onChange={ onChange }
+    />
 );
 
 export default LoginComponent;
