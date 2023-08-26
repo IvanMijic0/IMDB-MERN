@@ -1,49 +1,44 @@
 import React from 'react';
+
 import './loginComponent.css';
 
 class LoginComponent extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            mode: 'login',
-        };
-        this.reset();
-    }
+    state = {
+        mode: 'login',
+    };
 
-    reset() {
-        this.state = {
-            mode: 'login',
-        };
-    }
-
-    toggleMode() {
-        const newMode = this.state.mode === 'login' ? 'signup' : 'login';
-        this.setState({ mode: newMode });
-    }
+    toggleMode = async () => {
+        const newMode = this.state.mode === 'login' ? 'register' : 'login';
+        await this.setState({ mode: newMode });
+    };
 
     updateInputValue = (key, value) => {
-        this.setState({
-            [key]: value
-        }, () => {
-            this.props.setFormData(this.state);
-        });
+        this.setState(
+            {
+                [key]: value,
+            },
+            () => {
+                this.props.setFormData(this.state);
+            }
+        );
     };
 
     render() {
+        const { mode } = this.state;
         return (
             <div>
-                <div className={ `form-block-wrapper form-block-wrapper--is-${ this.state.mode }` }></div>
-                <section className={ `form-block form-block--is-${ this.state.mode }` }>
+                <div className={ `form-block-wrapper form-block-wrapper--is-${ mode }` }></div>
+                <section className={ `form-block form-block--is-${ mode }` }>
                     <header className="form-block__header">
-                        <h1>{ this.state.mode === 'login' ? 'Welcome back!' : 'Sign up' }</h1>
+                        <h1>{ mode === 'login' ? 'Welcome back!' : 'Sign up' }</h1>
                         <div className="form-block__toggle-block">
-                            <span>{ this.state.mode === 'login' ? 'Don\'t' : 'Already' } have an account? Click here &#8594;</span>
-                            <input id="form-toggler" type="checkbox" onClick={ this.toggleMode.bind(this) }/>
+                            <span>{ mode === 'login' ? "Don't" : 'Already' } have an account? Click here &#8594;</span>
+                            <input id="form-toggler" type="checkbox" onClick={ this.toggleMode }/>
                             <label htmlFor="form-toggler"></label>
                         </div>
                     </header>
                     <LoginForm
-                        mode={ this.state.mode }
+                        mode={ mode }
                         onSubmit={ this.props.onSubmit }
                         formData={ this.state }
                         updateInputValue={ (key, e) => this.updateInputValue(key, e) }
@@ -55,30 +50,26 @@ class LoginComponent extends React.Component {
 }
 
 class LoginForm extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <form onSubmit={ this.props.onSubmit }>
                 <div className="form-block__input-wrapper">
                     <div className="form-group form-group--login">
                         <Input
-                            type="text" id="username"
-                            label="user name"
-                            disabled={ this.props.mode === 'signup' }
-                            onChange={ e => this.props.updateInputValue('username', e.target.value) }
+                            type="text" id="email"
+                            label="email"
+                            disabled={ this.props.mode === 'register' }
+                            onChange={ e => this.props.updateInputValue('email', e.target.value) }
                         />
                         <Input
                             type="password"
                             id="password"
                             label="password"
-                            disabled={ this.props.mode === 'signup' }
+                            disabled={ this.props.mode === 'register' }
                             onChange={ e => this.props.updateInputValue('password', e.target.value) }
                         />
                     </div>
-                    <div className="form-group form-group--signup">
+                    <div className="form-group form-group--register">
                         <Input
                             type="text"
                             id="fullname"

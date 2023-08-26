@@ -1,7 +1,8 @@
 .user-profile {
     background-color: #1a1a1a;
     color: whitesmoke;
-    width: 40%;
+    width: 100%;
+    max-width: 600px;
     padding: 20px;
     justify-content: center;
     margin: 50px auto;
@@ -12,6 +13,7 @@
     border-right: 1px solid rgba(213, 140, 5, 0.46);
     border-left: 1px solid rgba(213, 140, 5, 0.46);
 }
+
 .profile-header {
     display: flex;
     flex-direction: column;
@@ -31,4 +33,21 @@
 .profile-name {
     font-size: 24px;
     margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .user-profile {
+        width: 80%;
+        padding: 10px;
+    }
+
+    .profile-avatar img {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 5px;
+    }
+
+    .profile-name {
+        font-size: 20px;
+    }
 }

@@ -1,12 +1,38 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, Navigate } from "react-router-dom";
+import axios from 'axios';
+
 import './dropdown.css';
 
-
-const UserDropdown = () => {
-
+const UserDropdown = ({ loggedIn, validated }) => {
     const [dropdownVisible, setDropdownVisible] = useState(false);
-    const [userRole, setUserRole] = useState("");
+    const [userRole, setUserRole] = useState("guest");
+    const [logoutSuccess, setLogoutSuccess] = useState(false);
+
+    useEffect(() => {
+        if ( loggedIn && validated && userRole === 'guest' ) {
+            const token = localStorage.getItem("jwt");
+
+            console.log("DropDown");
+
+            if ( token ) {
+                axios.get("http://localhost:5000/users/role", { headers: { Authorization: `Bearer ${ token }` } })
+                    .then(res => {
+                        setUserRole(res.data.role);
+                    })
+                    .catch(error => {
+                        console.error("Error fetching user role:", error);
+                    });
+            }
+        }
+    }, [loggedIn, validated, userRole]);
+
+    const handleLogout = async () => {
+        await localStorage.removeItem("jwt");
+        await setUserRole("guest");
+        await setLogoutSuccess(true);
+        window.location.reload();
+    };
 
     return (
         <div
@@ -15,7 +41,13 @@ const UserDropdown = () => {
             onMouseLeave={ () => setDropdownVisible(false) }
         >
             <UserIcon/>
-            <DropdownContent userRole={ userRole } visible={ dropdownVisible } setVisible={ setDropdownVisible }/>
+            <DropdownContent
+                userRole={ userRole }
+                visible={ dropdownVisible }
+                setVisible={ setDropdownVisible }
+                handleLogout={ handleLogout }
+            />
+            { logoutSuccess && <Navigate to="home"/> }
         </div>
     );
 };
@@ -30,7 +62,7 @@ const UserIcon = () => (
     </div>
 );
 
-const DropdownContent = ({ userRole, visible, setVisible }) => (
+const DropdownContent = ({ userRole, visible, setVisible, handleLogout }) => (
     <div
         className="userDropdown"
         style={ {
@@ -38,19 +70,18 @@ const DropdownContent = ({ userRole, visible, setVisible }) => (
             visibility: visible ? 'visible' : 'hidden'
         } }
     >
-        { userRole === "" ? (
-            <Link to="user/login" onClick={ () => setVisible(false) }>Login</Link>
-        ) : (
+        { userRole === "user" ? (
             <>
                 <Link to="user/profile">Profile</Link>
                 <Link to="user/myfavorites">Favorites</Link>
-                <button onClick={ handleLogout }>Logout</button>
+                <Link to="home" onClick={ handleLogout }>Logout</Link>
             </>
+        ) : (
+            <Link to="user/login" onClick={ () => {
+                setVisible(false);
+            } }>Login</Link>
         ) }
     </div>
 );
-const handleLogout = () => {
-    console.log("Clicked");
-};
 
 export default UserDropdown;

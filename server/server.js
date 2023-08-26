@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import cors from 'cors';
 
 import userRoutes from './routes/user.routes.js';
 import authRoutes from './routes/auth.routes.js';
@@ -17,6 +18,9 @@ env.error &&
 server
     .use(bodyParser.urlencoded({ extended: false }))
     .use(bodyParser.json())
+    .use(cors({
+        origin: 'http://localhost:3000'
+    }))
 
     .get('/health', (req, res) =>
         res.json({ "ServerHealth": "Server is up and running!" }))

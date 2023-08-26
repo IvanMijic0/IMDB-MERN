@@ -38,7 +38,7 @@ body {
     background-color: #000000;
 }
 
-.form-block-wrapper--is-signup {
+.form-block-wrapper--is-register {
     opacity: 0.45;
     background-color: #000000;
 }
@@ -83,14 +83,14 @@ body {
     transition: all 0.25s cubic-bezier(0.36, 1, 0.62, 0.98) 0.3s;
 }
 
-.form-block--is-signup .form-block__input-wrapper {
+.form-block--is-register .form-block__input-wrapper {
     height: 252px;
     -moz-transition: all 0.5s cubic-bezier(0.36, 1, 0.62, 0.98) 0.2s;
     -webkit-transition: all 0.5s cubic-bezier(0.36, 1, 0.62, 0.98) 0.2s;
     transition: all 0.5s cubic-bezier(0.36, 1, 0.62, 0.98) 0.2s;
 }
 
-.form-group--signup {
+.form-group--register {
     position: absolute;
     top: 0;
     left: 150%;
@@ -116,7 +116,7 @@ body {
     background: transparent;
 }
 
-.form-block--is-signup .form-group__input {
+.form-block--is-register .form-group__input {
     transform: translateX(-150%);
 }
 
@@ -124,15 +124,15 @@ body {
     opacity: 1;
 }
 
-.form-block--is-signup .form-group--login .form-group__input {
+.form-block--is-register .form-group--login .form-group__input {
     opacity: 0;
 }
 
-.form-group--signup .form-group__input {
+.form-group--register .form-group__input {
     opacity: 0;
 }
 
-.form-block--is-signup .form-group--signup .form-group__input {
+.form-block--is-register .form-group--register .form-group__input {
     opacity: 1;
 }
 

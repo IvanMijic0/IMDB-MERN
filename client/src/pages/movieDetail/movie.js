@@ -8,15 +8,11 @@ const Movie = () => {
     const { id } = useParams();
 
     useEffect(() => {
-        getData();
-        window.scrollTo(0, 0);
-    }, []);
-
-    const getData = () => {
         fetch(`https://api.themoviedb.org/3/movie/${ id }?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US`)
             .then(res => res.json())
             .then(data => setMovie(data));
-    };
+        window.scrollTo(0, 0);
+    }, [id]);
 
     return (
         <div className="movie">
@@ -46,15 +42,13 @@ const Movie = () => {
                         <div
                             className="movie__releaseDate">{ currentMovieDetail ? "Release date: " + currentMovieDetail.release_date : "" }</div>
                         <div className="movie__genres">
-                            {
-                                currentMovieDetail && currentMovieDetail.genres
-                                    ?
-                                    currentMovieDetail.genres.map(genre => (
-                                        <><span className="movie__genre" id={ genre.id }>{ genre.name }</span></>
-                                    ))
-                                    :
-                                    ""
-                            }
+                            { currentMovieDetail && currentMovieDetail.genres
+                                ? currentMovieDetail.genres.map(genre => (
+                                    <span
+                                        key={ genre.id }><span className="movie__genre">{ genre.name }</span>
+                                    </span>
+                                ))
+                                : null }
                         </div>
                     </div>
                     <div className="movie__detailRightBottom">
@@ -68,34 +62,41 @@ const Movie = () => {
                 <div className="movie__heading">Useful Links</div>
                 {
                     currentMovieDetail && currentMovieDetail.homepage &&
-                    <a href={ currentMovieDetail.homepage } target="_blank" style={ { textDecoration: "none" } }><p>
-                        <span className="movie__homeButton movie__Button">Homepage <i
-                            className="newTab fas fa-external-link-alt"></i></span></p></a>
+                    <a href={ currentMovieDetail.homepage } target="_blank" rel="noreferrer"
+                       style={ { textDecoration: "none" } }>
+                        <p><span className="movie__homeButton movie__Button">Homepage <i
+                            className="newTab fas fa-external-link-alt"></i></span>
+                        </p>
+                    </a>
                 }
                 {
                     currentMovieDetail && currentMovieDetail.imdb_id &&
                     <a href={ "https://www.imdb.com/title/" + currentMovieDetail.imdb_id } target="_blank"
-                       style={ { textDecoration: "none" } }><p><span className="movie__imdbButton movie__Button">IMDb<i
-                        className="newTab fas fa-external-link-alt"></i></span></p></a>
+                       rel="noreferrer" style={ { textDecoration: "none" } }>
+                        <p><span className="movie__imdbButton movie__Button">IMDb <i
+                            className="newTab fas fa-external-link-alt"></i></span>
+                        </p>
+                    </a>
                 }
             </div>
             <div className="movie__heading">Production companies</div>
             <div className="movie__production">
-                {
-                    currentMovieDetail && currentMovieDetail.production_companies && currentMovieDetail.production_companies.map(company => (
-                        <>
-                            {
-                                company.logo_path
-                                &&
-                                <span className="productionCompanyImage">
-                                    <img className="movie__productionComapany" alt="Production company"
-                                         src={ "https://image.tmdb.org/t/p/original" + company.logo_path }/>
-                                    <span>{ company.name }</span>
-                                </span>
-                            }
-                        </>
+                { currentMovieDetail && currentMovieDetail.production_companies
+                    ? currentMovieDetail.production_companies.map(company => (
+                        <span key={ company.id }>
+                { company.logo_path && (
+                    <span className="productionCompanyImage">
+                        <img
+                            className="movie__productionComapany"
+                            alt="Production company"
+                            src={ "https://image.tmdb.org/t/p/original" + company.logo_path }
+                        />
+                        <span>{ company.name }</span>
+                    </span>
+                ) }
+            </span>
                     ))
-                }
+                    : null }
             </div>
         </div>
     );
