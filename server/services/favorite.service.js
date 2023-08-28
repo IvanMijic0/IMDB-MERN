@@ -1,4 +1,5 @@
 import Favorites from '../models/favorites.model.js';
+import Movie from '../models/movie.model.js';
 
 export const addMovie = async (req, res) => {
     const { userId, movieId } = req.body;
@@ -24,6 +25,37 @@ export const addMovie = async (req, res) => {
     }
 };
 
+export const getFavoriteMovies = async (req, res) => {
+    const userId = req.params.userId;
+
+    try {
+        const favoriteMovies = await findFavoriteMovies(userId);
+        res.status(200).json({ favoriteMovies });
+    } catch ( error ) {
+        console.error('Error fetching favorite movies:', error);
+        res.status(500).json({ message: 'Could not fetch favorite movies' });
+    }
+};
+
+export const findFavoriteMovies = async (userId) => {
+    try {
+        const favorites = await Favorites.findOne({ userId: userId });
+
+        if ( !favorites ) {
+            return [];
+        }
+
+        const favoriteMovieIds = favorites.favorites_id;
+
+        return await Movie.find({ _id: { $in: favoriteMovieIds } });
+
+    } catch ( error ) {
+        console.error('Error fetching favorite movies:', error);
+        return [];
+    }
+};
+
+
 export const removeMovieFromFavorites = async (req, res) => {
     const { userId, movieId } = req.body;
 
@@ -47,3 +79,6 @@ export const removeMovieFromFavorites = async (req, res) => {
         res.status(500).json({ message: 'Could not remove movie from favorites' });
     }
 };
+
+export class getFavoriteMoviesController {
+}
