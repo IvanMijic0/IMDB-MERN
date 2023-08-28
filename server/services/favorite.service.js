@@ -79,6 +79,3 @@ export const removeMovieFromFavorites = async (req, res) => {
         res.status(500).json({ message: 'Could not remove movie from favorites' });
     }
 };
-
-export class getFavoriteMoviesController {
-}
