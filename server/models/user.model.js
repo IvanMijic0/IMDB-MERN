@@ -19,7 +19,7 @@ const user
     date: {
         type: Date,
         default: Date()
-    }
+    },
 });
 
 const User = mongoose.model('users', user);

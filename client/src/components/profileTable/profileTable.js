@@ -1,7 +1,6 @@
 import './profileTable.css';
 
 const ProfileTable = ({ userData }) => {
-
         return (
             <div className="profile-table">
                 <div className="table-container">

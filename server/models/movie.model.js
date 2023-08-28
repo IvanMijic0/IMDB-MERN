@@ -9,11 +9,11 @@ const movie
         type: String,
         default: uuidv4
     },
-    date: {
-        type: Date,
-        default: Date()
-    },
-    userId: String
+    poster_path: String,
+    original_title: String,
+    release_date: String,
+    vote_average: String,
+    overview: String,
 });
 
 const Movie = mongoose.model('movies', movie);
