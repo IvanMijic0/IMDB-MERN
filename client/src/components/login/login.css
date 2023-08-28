@@ -277,4 +277,7 @@ input[type="checkbox"]:checked + label:after {
     top: -10px;
     right: 0;
 }
- 
+
+.form-group__input.error {
+    border: 1px solid red;
+}

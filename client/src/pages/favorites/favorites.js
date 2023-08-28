@@ -3,7 +3,7 @@ import "./favorites.css";
 import Cards from '../../components/card/card';
 import { useParams } from 'react-router-dom';
 
-const Favorites = () => {
+const UserFavorites = () => {
 
     const [movieList, setMovieList] = useState([]);
     const { type } = useParams();
@@ -36,4 +36,4 @@ const Favorites = () => {
     );
 };
 
-export default Favorites;
+export default UserFavorites;

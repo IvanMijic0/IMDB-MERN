@@ -1,6 +1,6 @@
 import User from '../models/user.model.js';
 
-import { hashPassword, verify } from '../utils/helper.js';
+import { hashPassword, retrieveToken, verify } from '../utils/helper.js';
 import { JWT_SECRET } from '../utils/constants.js';
 
 export const getUsers = async (req, res) => {
@@ -75,13 +75,7 @@ export const deleteUser = async (req, res) => {
 };
 
 export const getUserRole = async (req, res) => {
-    const authorizationHeader  = req.headers.authorization;
-
-    if (!authorizationHeader ) {
-        return res.status(401).json({ message: 'Unauthorized: Missing token.' });
-    }
-
-    const token = authorizationHeader.replace('Bearer ', '');
+    const token = await retrieveToken(req, res)
 
     try {
         const decodedData = await verify(token, JWT_SECRET);
@@ -100,3 +94,22 @@ export const getUserRole = async (req, res) => {
     }
 };
 
+export const getUserData = async (req, res) => {
+    const token = await retrieveToken(req, res)
+
+    try {
+        const decodedData = await verify(token, JWT_SECRET);
+        const userId = decodedData.data._id;
+
+        const user = await User.findById(userId).select('-password');
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found.' });
+        }
+
+        res.json({ userData: user });
+    } catch (error) {
+        console.error('Error fetching user data:', error);
+        res.status(500).json({ message: 'Could not fetch user data.' });
+    }
+};

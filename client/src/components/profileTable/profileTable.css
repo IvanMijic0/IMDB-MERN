@@ -1,27 +1,36 @@
 .profile-table {
     background-color: #1a1a1a;
     color: #ffffff;
-    width: 40%;
+    width: 43%;
     padding: 20px;
     border-radius: 10px;
     margin: 50px auto;
+    border-right: 1px solid rgba(213, 140, 5, 0.46);
+    border-left: 1px solid rgba(213, 140, 5, 0.46);
 }
 
 .table-container {
-    margin-left: 35%;
+    margin-left: 2%;
 }
 
 .table-row {
     display: flex;
     margin: 20px 0;
+    border-bottom: 1px solid rgba(213, 140, 5, 0.46);
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-bottom-left-radius: 10px;
 }
 
 .table-label {
     font-weight: bold;
     width: 120px;
+    border-right: 2px solid rgba(213, 140, 5, 0.46);
+    padding-bottom: 10px;
 }
 
 .table-value {
     flex: 1;
-    padding-left: 10px;
+    padding-left: 40px;
 }

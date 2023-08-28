@@ -5,7 +5,7 @@ import "./Header.css";
 import UserDropdown from '../dropdown/dropdown';
 
 
-const Header = ({ loggedIn, validated }) => {
+const Header = ({ authenticated, loggedIn }) => {
     return (
         <div className="header">
             <div className="headerLeft">
@@ -17,8 +17,8 @@ const Header = ({ loggedIn, validated }) => {
             </div>
             <div className="headerRight">
                 <UserDropdown
+                    authenticated={ authenticated }
                     loggedIn={ loggedIn }
-                    validated={ validated }
                 />
             </div>
         </div>

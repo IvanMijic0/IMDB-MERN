@@ -18,3 +18,13 @@ export const sign = async (data) => {
 export const verify = async (tkn) => {
     return jwt.verify(tkn, JWT_SECRET);
 };
+
+export const retrieveToken = async (req, res) => {
+    const authorizationHeader = req.headers.authorization;
+
+    if ( !authorizationHeader ) {
+        return res.status(401).json({ message: 'Unauthorized: Missing token.' });
+    }
+
+    return authorizationHeader.replace('Bearer ', '');
+};

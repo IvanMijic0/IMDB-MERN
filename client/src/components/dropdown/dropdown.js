@@ -4,16 +4,14 @@ import axios from 'axios';
 
 import './dropdown.css';
 
-const UserDropdown = ({ loggedIn, validated }) => {
+const UserDropdown = ({ loggedIn, authenticated }) => {
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const [userRole, setUserRole] = useState("guest");
     const [logoutSuccess, setLogoutSuccess] = useState(false);
 
     useEffect(() => {
-        if ( loggedIn && validated && userRole === 'guest' ) {
+        if ( authenticated && userRole === 'guest' ) {
             const token = localStorage.getItem("jwt");
-
-            console.log("DropDown");
 
             if ( token ) {
                 axios.get("http://localhost:5000/users/role", { headers: { Authorization: `Bearer ${ token }` } })
@@ -25,12 +23,13 @@ const UserDropdown = ({ loggedIn, validated }) => {
                     });
             }
         }
-    }, [loggedIn, validated, userRole]);
+    }, [authenticated, loggedIn, userRole]);
 
     const handleLogout = async () => {
         await localStorage.removeItem("jwt");
         await setUserRole("guest");
         await setLogoutSuccess(true);
+        authenticated = false;
         window.location.reload();
     };
 

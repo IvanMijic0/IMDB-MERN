@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router';
+import { useAlert } from 'react-alert';
 import axios from 'axios';
 
-import LoginComponent from '../../components/loginComponent/loginComponent';
+import Login from '../../components/login/login';
 
-const LoginPage = ({ loggedIn, setLoggedIn, validated, setValidated }) => {
+const LoginPage = ({loggedIn, setLoggedIn}) => {
     const [formData, setFormData] = useState({});
     const [mode, setMode] = useState('login');
+    const [validated, setValidated] = useState(false);
 
-    useEffect(() => {
+    const alert = useAlert();
+
+    useEffect( () => {
         const token = localStorage.getItem('jwt');
 
         if ( token ) {
@@ -25,8 +29,7 @@ const LoginPage = ({ loggedIn, setLoggedIn, validated, setValidated }) => {
                     setLoggedIn(false);
                 });
         }
-
-    }, [mode, setValidated, validated, setLoggedIn, loggedIn]);
+    }, [mode, setValidated, setLoggedIn, loggedIn]);
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -41,7 +44,7 @@ const LoginPage = ({ loggedIn, setLoggedIn, validated, setValidated }) => {
                         localStorage.setItem('jwt', token);
                         setLoggedIn(true);
                     })
-                    .catch((e) => console.log('Invalid Credentials' + e));
+                    .catch(() => alert.error("Invalid Credentials"));
             } else if ( mode === 'register' ) {
                 const requestData = {
                     email: email,
@@ -52,9 +55,12 @@ const LoginPage = ({ loggedIn, setLoggedIn, validated, setValidated }) => {
                         lastName: fullName.split(' ')[1]
                     }
                 };
-                const response = await axios.post(`http://localhost:5000/auth/${ mode }`, requestData);
-                console.log(response.data);
-                setMode('login');
+                try {
+                    await axios.post(`http://localhost:5000/auth/${ mode }`, requestData)
+                    setMode('login');
+                } catch (e) {
+                    alert.error("Invalid Credentials")
+                }
             }
         } catch ( error ) {
             console.error('Error:', error);
@@ -66,7 +72,7 @@ const LoginPage = ({ loggedIn, setLoggedIn, validated, setValidated }) => {
     } else {
         return (
             <div className={ `app app--is-${ mode }` }>
-                <LoginComponent
+                <Login
                     mode={ mode }
                     onSubmit={ handleLogin }
                     setFormData={ setFormData }
