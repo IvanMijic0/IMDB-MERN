@@ -17,6 +17,30 @@
     object-position: 0 35%;
 }
 
+.favorite-button {
+    position: absolute;
+    top: .5rem;
+    right: 12.5rem;
+    background-color: #efe9e4;
+    border-radius: 50%;
+    width: 2.8rem;
+    height: 2.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    border: none;
+}
+
+.favorite-button--active {
+    background-color: #ffd319;
+}
+
+.favorite-button:hover {
+    background-color: #fde67f;
+}
+
 .movie__detail {
     align-items: center;
     width: 75%;
@@ -91,7 +115,7 @@
     bottom: 120px;
     display: flex;
     justify-content: space-between;
-    width: 75%;
+    width: 30%;
 }
 
 .movie__heading {
@@ -105,13 +129,13 @@
     padding: 0.8rem 2rem;
     border-radius: 20px;
     cursor: pointer;
-    width: 150px;
+    width: 80px;
     color: black;
     font-weight: bold;
 }
 
 .movie__homeButton {
-    background-color:rgb(255, 0, 0);
+    background-color: #f37813;
     
 }
 

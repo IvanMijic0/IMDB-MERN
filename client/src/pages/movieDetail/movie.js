@@ -1,18 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useAlert } from 'react-alert';
 
 import "./movie.css";
 
 const Movie = () => {
     const [currentMovieDetail, setMovie] = useState();
+    const [isFavorite, setIsFavorite] = useState(false);
     const { id } = useParams();
 
+    const alert = useAlert();
+
     useEffect(() => {
+
         fetch(`https://api.themoviedb.org/3/movie/${ id }?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US`)
             .then(res => res.json())
-            .then(data => setMovie(data));
+            .then(data => {
+                setMovie(data);
+                const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+                setIsFavorite(favorites.includes(data.id));
+            });
         window.scrollTo(0, 0);
     }, [id]);
+
+    const toggleFavorite = () => {
+        isFavorite ? alert.success('unFavorited', { timeout: 1500 }) : alert.success("Favorited", { timeout: 1500 });
+        setIsFavorite(!isFavorite);
+    };
 
     return (
         <div className="movie">
@@ -20,6 +34,12 @@ const Movie = () => {
                 <img className="movie__backdrop" alt="Movie backdrop"
                      src={ `https://image.tmdb.org/t/p/original${ currentMovieDetail ? currentMovieDetail.backdrop_path : "" }` }/>
             </div>
+            <button
+                className={ `favorite-button ${ isFavorite ? "favorite-button--active" : "" }` }
+                onClick={ toggleFavorite }
+            >
+                <i className="fas fa-star"></i>
+            </button>
             <div className="movie__detail">
                 <div className="movie__detailLeft">
                     <div className="movie__posterBox">
@@ -59,12 +79,11 @@ const Movie = () => {
                 </div>
             </div>
             <div className="movie__links">
-                <div className="movie__heading">Useful Links</div>
                 {
                     currentMovieDetail && currentMovieDetail.homepage &&
                     <a href={ currentMovieDetail.homepage } target="_blank" rel="noreferrer"
                        style={ { textDecoration: "none" } }>
-                        <p><span className="movie__homeButton movie__Button">Homepage <i
+                        <p><span className="movie__homeButton movie__Button">Trailer<i
                             className="newTab fas fa-external-link-alt"></i></span>
                         </p>
                     </a>

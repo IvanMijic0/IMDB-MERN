@@ -1,4 +1,5 @@
 import express from 'express';
+
 import { addMovie, getFavoriteMovies, removeMovieFromFavorites } from '../services/favorite.service.js';
 import authMiddleware from '../middleware/auth.middleware.js';
 import { userGuard } from '../middleware/role.middleware.js';
