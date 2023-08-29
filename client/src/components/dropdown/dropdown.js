@@ -22,6 +22,9 @@ const UserDropdown = ({ loggedIn, authenticated }) => {
                         console.error("Error fetching user role:", error);
                     });
             }
+            else {
+                console.log('Please log in');
+            }
         }
     }, [authenticated, loggedIn, userRole]);
 

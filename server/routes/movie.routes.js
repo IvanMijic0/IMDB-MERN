@@ -8,7 +8,10 @@ const router = express.Router();
 
 router
     .route('/')
-    .post(authMiddleware, userGuard, createMovie)
+    .post(authMiddleware, userGuard, createMovie);
+
+router
+    .route('/:movieId')
     .delete(authMiddleware, userGuard, deleteMovie);
 
 export default router;

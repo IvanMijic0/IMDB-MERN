@@ -12,7 +12,7 @@ export const cmpPwd = async (pwd, hash) => {
 };
 
 export const sign = async (data) => {
-    return await jwt.sign(data, JWT_SECRET, { exp: Math.floor(Date.now() / 1000) + (10 * 60) });
+    return await jwt.sign(data, JWT_SECRET, { expiresIn: '1d' });
 };
 
 export const verify = async (tkn) => {

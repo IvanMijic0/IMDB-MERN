@@ -38,7 +38,7 @@ const App = () => {
                         <Route path="movie/:id" element={ <Movie/> }/>
                         <Route path="movies/:type" element={ <MovieList/> }/>
 
-                        {/* Redirect to profile if already logged in */ }
+                        {/* Redirect to home if already logged in */ }
                         <Route
                             path="user/login"
                             element={

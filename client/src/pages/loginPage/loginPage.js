@@ -5,14 +5,14 @@ import axios from 'axios';
 
 import Login from '../../components/login/login';
 
-const LoginPage = ({loggedIn, setLoggedIn}) => {
+const LoginPage = ({ loggedIn, setLoggedIn }) => {
     const [formData, setFormData] = useState({});
     const [mode, setMode] = useState('login');
     const [validated, setValidated] = useState(false);
 
     const alert = useAlert();
 
-    useEffect( () => {
+    useEffect(() => {
         const token = localStorage.getItem('jwt');
 
         if ( token ) {
@@ -36,35 +36,29 @@ const LoginPage = ({loggedIn, setLoggedIn}) => {
 
         const { fullName, email, createPassword, password } = formData;
 
-        try {
-            if ( mode === 'login' ) {
-                axios.post(`http://localhost:5000/auth/${ mode }`, { email, password })
-                    .then((res) => {
-                        const token = res.data.access_token;
-                        localStorage.setItem('jwt', token);
-                        setLoggedIn(true);
-                    })
-                    .catch(() => alert.error("Invalid Credentials"));
-            } else if ( mode === 'register' ) {
-                const requestData = {
-                    email: email,
-                    password: createPassword,
-                    role: 'user',
-                    UserInfo: {
-                        firstName: fullName.split(' ')[0],
-                        lastName: fullName.split(' ')[1]
-                    }
-                };
-                try {
-                    await axios.post(`http://localhost:5000/auth/${ mode }`, requestData)
-                    setMode('login');
-                } catch (e) {
-                    alert.error("Invalid Credentials")
+        if ( mode === 'login' ) {
+            axios.post(`http://localhost:5000/auth/${ mode }`, { email, password })
+                .then((res) => {
+                    const token = res.data.access_token;
+                    localStorage.setItem('jwt', token);
+                    setLoggedIn(true);
+                })
+                .catch(() => alert.error("Invalid Credentials"));
+        } else if ( mode === 'register' ) {
+            const requestData = {
+                email: email,
+                password: createPassword,
+                role: 'user',
+                UserInfo: {
+                    firstName: fullName.split(' ')[0],
+                    lastName: fullName.split(' ')[1]
                 }
-            }
-        } catch ( error ) {
-            console.error('Error:', error);
+            };
+            await axios.post(`http://localhost:5000/auth/${ mode }`, requestData)
+                .then(() => setMode('login'))
+                .catch(() => alert.error("Invalid Credentials"));
         }
+
     };
 
     if ( loggedIn && validated ) {

@@ -19,8 +19,8 @@
 
 .favorite-button {
     position: absolute;
-    top: .5rem;
-    right: 12.5rem;
+    top: 1vh;
+    right: 10.5vw;
     background-color: #efe9e4;
     border-radius: 50%;
     width: 2.8rem;
