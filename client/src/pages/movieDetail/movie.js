@@ -92,10 +92,6 @@ const Movie = () => {
                     { headers: { Authorization: `Bearer ${ token }` } }
                 );
 
-                await axios.delete(
-                    `http://localhost:5000/movies/${ currentMovieDetail.id }`,
-                    { headers: { Authorization: `Bearer ${ token }` } }
-                );
                 alert.success('unFavorited', { timeout: 1500 });
             }
         } catch ( e ) {
