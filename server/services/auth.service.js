@@ -2,16 +2,26 @@ import User from '../models/user.model.js';
 import { cmpPwd, hashPassword, sign, verify } from '../utils/helper.js';
 
 export const registerUser = async (req, res) => {
-    const { password, ...user } = req.body;
+    const { email, password, ...user } = req.body;
 
     try {
-        const userToSave = new User({ ...user, password: await hashPassword(password) });
+        const existingUser = await User.findOne({ email });
+
+        if (existingUser) {
+            return res.status(409).send('User already exists.');
+        }
+
+        const hashedPassword = await hashPassword(password);
+        const userToSave = new User({ ...user, email, password: hashedPassword });
         await userToSave.save();
+
         res.status(201).send('Successfully registered user.');
-    } catch ( e ) {
-        res.status(501).send('Could not register user.');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Could not register user.');
     }
 };
+
 
 export const login = async (req, res) => {
     const { email, password } = req.body;

@@ -43,7 +43,9 @@ const LoginPage = ({ loggedIn, setLoggedIn }) => {
                     localStorage.setItem('jwt', token);
                     setLoggedIn(true);
                 })
-                .catch(() => alert.error("Invalid Credentials"));
+                .catch(() => {
+                    alert.error("Invalid Credentials");
+                });
         } else if ( mode === 'register' ) {
             const requestData = {
                 email: email,
@@ -55,8 +57,16 @@ const LoginPage = ({ loggedIn, setLoggedIn }) => {
                 }
             };
             await axios.post(`http://localhost:5000/auth/${ mode }`, requestData)
-                .then(() => setMode('login'))
-                .catch(() => alert.error("Invalid Credentials"));
+                .then(() => {
+                    setMode('login');
+                    alert.success('Successfully registered')
+                    setTimeout(() => window.location.reload(), 2000)
+
+                })
+                .catch(() => {
+                    console.log(e);
+                    alert.error("User already exists")
+                });
         }
 
     };
@@ -68,6 +78,7 @@ const LoginPage = ({ loggedIn, setLoggedIn }) => {
             <div className={ `app app--is-${ mode }` }>
                 <Login
                     mode={ mode }
+                    setMode={ setMode }
                     onSubmit={ handleLogin }
                     setFormData={ setFormData }
                 />

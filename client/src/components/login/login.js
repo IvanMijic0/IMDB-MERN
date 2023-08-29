@@ -10,6 +10,8 @@ class Login extends React.Component {
     toggleMode = async () => {
         const newMode = this.state.mode === 'login' ? 'register' : 'login';
         await this.setState({ mode: newMode });
+        await this.props.setMode(this.state.mode);
+        console.log(this.props.mode);
     };
 
     updateInputValue = (key, value) => {
