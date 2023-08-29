@@ -56,8 +56,7 @@ const Movie = () => {
         };
 
         if ( currentMovieDetail ) {
-            fetchDataAndCheckFavorites().then(() => {
-            });
+            fetchDataAndCheckFavorites().then();
         }
 
     }, [id, currentMovieDetail]);

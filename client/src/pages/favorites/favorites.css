@@ -1,14 +1,33 @@
-.movie__list {
+.favMovie__list {
     padding: 0 3rem 3rem 3rem;
 }
 
-.list__title {
+.favList__title {
     font-size: 1.75rem;
-    margin:  2.5rem;
+    margin: 2.5rem;
 }
 
-.list__cards {
+.favList__cards {
     display: flex;
-    flex-wrap: wrap ;
+    flex-wrap: wrap;
     justify-content: center;
+}
+
+.emptyFavorites {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.emptyFavorites__logo {
+    width: 5rem;
+    height: 5rem;
+    color: white;
+}
+
+.emptyFavorites__text {
+    font-size: 1.2rem;
+    position: relative;
+    margin-top: 7rem;
+    right: 10rem;
 }

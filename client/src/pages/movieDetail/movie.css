@@ -2,7 +2,7 @@
     width: 100%;
     position: relative;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     align-items: center;
 }
 
@@ -13,7 +13,7 @@
 .movie__backdrop {
     width: 100%;
     height: 500px;
-    object-fit:cover;
+    object-fit: cover;
     object-position: 0 35%;
 }
 
@@ -54,7 +54,7 @@
 }
 
 .movie__poster {
-    width:300px;
+    width: 300px;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.86) 0 22px 40px 6px;
 }
@@ -64,10 +64,15 @@
     display: flex;
     flex-direction: column;
     height: 450px;
-    justify-content:space-between ;
+    justify-content: space-between;
+    border-radius: 10px;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.4) 60%, transparent);
+    padding-left: 2rem;
+    padding-right: 1rem;
+    padding-top: .2rem;
 }
 
-.movie__detailRightTop > div{
+.movie__detailRightTop > div {
     text-shadow: 0 0 5px #000000;
     margin-bottom: .5rem;
 }
@@ -106,6 +111,7 @@
     position: relative;
     align-items: center;
 }
+
 .synopsisText > div:last-of-type {
     margin-left: auto;
 }
@@ -136,11 +142,11 @@
 
 .movie__homeButton {
     background-color: #f37813;
-    
+
 }
 
 .movie__imdbButton {
-    background-color:#f3ce13;
+    background-color: #f3ce13;
 }
 
 .newTab {

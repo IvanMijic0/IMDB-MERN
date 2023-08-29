@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import "./card.css";
 
-const Cards = ({ movie }) => {
+const Cards = ({ movieId, movie }) => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -30,7 +30,7 @@ const Cards = ({ movie }) => {
                     </SkeletonTheme>
                 </div>
             ) : (
-                <Link to={ `/movie/${ movie.id }` } style={ { textDecoration: "none", color: "white" } }>
+                <Link to={ `/movie/${ movieId }` } style={ { textDecoration: "none", color: "white" } }>
                     <div className="cards">
                         <img className="cards__img" alt="Card"
                              src={ `https://image.tmdb.org/t/p/original${ movie ? movie.poster_path : "" }` }/>

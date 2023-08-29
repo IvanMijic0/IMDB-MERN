@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
-import "./movieList.css";
 import { useParams } from "react-router-dom";
+
+import "./movieList.css";
 import Cards from "../card/card";
 
 const MovieList = () => {
@@ -24,7 +25,7 @@ const MovieList = () => {
             <h2 className="list__title">{ (type ? type : "POPULAR").toUpperCase() }</h2>
             <div className="list__cards">
                 { movieList.map(movie => (
-                    <Cards key={ movie.id } movie={ movie }/>
+                    <Cards key={ movie.id } movie={ movie } movieId={movie.id}/>
                 )) }
             </div>
         </div>
