@@ -9,11 +9,14 @@ IMDB-MERN is a project that aims to create a simplified clone of the popular Int
 - **User Authorization:** Role-based authorization ensures that only authorized users can access specific features.
 - **Profile Section:** Users have a dedicated profile section where they can manage their account details.
 - **Favorites Feature:** Users can save their favorite movies into a MongoDB database, making it easy to keep track of movies they love.
+- **Database Dockerization:** The project utilizes Docker Compose with a docker-compose.yaml file for simplified database setup and management.
 
 ## Screenshots
 
 ### Homepage preview
 ![Homepage preview](https://github.com/IvanMijic0/IMDB-MERN/blob/master/preview/homepage.png)
+## Movie Details preview
+![Movie Details preview](https://github.com/IvanMijic0/IMDB-MERN/blob/master/preview/details.png)
 ### Login preview
 ![Login preview](https://github.com/IvanMijic0/IMDB-MERN/blob/master/preview/login.png)
 ### Register preview
@@ -54,7 +57,11 @@ IMDB-MERN is a project that aims to create a simplified clone of the popular Int
   cd client
   npm start
   ```
-  7. Open your web browser and go to http://localhost:3000 to access the application.
+  7. Set up your docker-compose.yaml or use locally configured databse (few modifications needed). If you use docker compose then:
+  ```
+  docker-compose up -d
+  ```
+  8. Open your web browser and go to http://localhost:3000 to access the application.
  
 ## Contributing
   If you would like to contribute to this project, please follow these guidelines:
