@@ -3,7 +3,7 @@
 ## Description
 
 IMDB-MERN is a project that aims to create a simplified clone of the popular Internet Movie Database (IMDB) using the MERN (MongoDB, Express, React, Node.js) stack. It includes a server implementation built on top of a modified simple IMDB clone frontend template. The project incorporates several notable features to enhance the user experience and functionality, including:
--** User Authentication and Registration:** Users can create accounts and log in securely to access the platform.
+- **User Authentication and Registration:** Users can create accounts and log in securely to access the platform.
 - **Input Error Handling:** The application features robust error handling to ensure a smooth user experience.
 - **Modified Frontend Design**: The frontend design has been customized to provide a unique and visually appealing interface.
 - **User Authorization:** Role-based authorization ensures that only authorized users can access specific features.
