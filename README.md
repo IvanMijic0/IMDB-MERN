@@ -12,6 +12,19 @@ IMDB-MERN is a project that aims to create a simplified clone of the popular Int
 
 ## Screenshots
 
+### Homepage preview
+![Homepage preview](https://github.com/IvanMijic0/IMDB-MERN/blob/master/preview/homepage.png)
+### Login preview
+![Login preview](https://github.com/IvanMijic0/IMDB-MERN/blob/master/preview/login.png)
+### Register preview
+![Register preview](https://github.com/IvanMijic0/IMDB-MERN/blob/master/preview/register.png)
+### Popular movies preview
+![Popular movies preview](https://github.com/IvanMijic0/IMDB-MERN/blob/master/preview/popular.png)
+### User profile preview
+![User profile preview](https://github.com/IvanMijic0/IMDB-MERN/blob/master/preview/profile.png)
+### Favorites preview
+![Favorites preview](https://github.com/IvanMijic0/IMDB-MERN/blob/master/preview/favorites.png)
+
 ## Installation
   1. Clone the repository:
   ```
