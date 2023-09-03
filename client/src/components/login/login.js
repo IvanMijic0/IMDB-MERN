@@ -87,6 +87,14 @@ class LoginForm extends React.Component {
         this.props.updateInputValue(key, value);
     };
 
+    handleGoogleSignup = () => {
+
+    };
+
+    handleGitHubSignup = () => {
+
+    };
+
     handleValidation = () => {
         const { mode, formData } = this.props;
         const { email, fullName, createPassword, repeatPassword } = formData;
@@ -193,6 +201,20 @@ class LoginForm extends React.Component {
                 >
                     { this.props.mode === 'login' ? 'Log In' : 'Sign Up' }
                 </button>
+                <div className="oauth-buttons">
+                    <button className="oauth-button" type="button" onClick={ this.handleGoogleSignup }>
+                        <img
+                            className="oauth-icon"
+                            src="https://icones.pro/wp-content/uploads/2021/02/google-icone-symbole-png-logo-jaune.png"
+                            alt="Google Logo"/>
+                    </button>
+                    <button className="oauth-button" type="button" onClick={ this.handleGitHubSignup }>
+                        <img
+                            className="oauth-icon"
+                            src="https://icones.pro/wp-content/uploads/2021/06/icone-github-jaune.png"
+                            alt="GitHub Logo"/>
+                    </button>
+                </div>
             </form>
         );
     }

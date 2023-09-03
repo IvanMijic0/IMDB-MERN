@@ -36,12 +36,14 @@ const UserProfile = () => {
     };
 
     return (
-        <>
-            { isLoading ? (
+        isLoading ?
+            (
                 <div className="loading-spinner" style={ spinnerContainerStyle }>
                     <BeatLoader color="#f0ad4e" loading={ true } size={ 15 }/>
                 </div>
-            ) : (
+            )
+            :
+            (
                 <>
                     <ProfileHeader
                         fullName={ fullName }
@@ -50,8 +52,7 @@ const UserProfile = () => {
                         userData={ userData }
                     />
                 </>
-            ) }
-        </>
+            )
     );
 };
 
