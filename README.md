@@ -3,7 +3,7 @@
 ## Description
 
 IMDB-MERN is a project that aims to create a simplified clone of the popular Internet Movie Database (IMDB) using the MERN (MongoDB, Express, React, Node.js) stack. It includes a server implementation built on top of a modified simple IMDB clone frontend template. The project incorporates several notable features to enhance the user experience and functionality, including:
--** User Authentication and Registration:** Users can create accounts and log in securely to access the platform.
+- **User Authentication and Registration:** Users can create accounts and log in securely to access the platform.
 - **Input Error Handling:** The application features robust error handling to ensure a smooth user experience.
 - **Modified Frontend Design**: The frontend design has been customized to provide a unique and visually appealing interface.
 - **User Authorization:** Role-based authorization ensures that only authorized users can access specific features.
@@ -11,6 +11,19 @@ IMDB-MERN is a project that aims to create a simplified clone of the popular Int
 - **Favorites Feature:** Users can save their favorite movies into a MongoDB database, making it easy to keep track of movies they love.
 
 ## Screenshots
+
+### Homepage preview
+![Homepage preview](https://github.com/IvanMijic0/IMDB-MERN/blob/master/preview/homepage.png)
+### Login preview
+![Login preview](https://github.com/IvanMijic0/IMDB-MERN/blob/master/preview/login.png)
+### Register preview
+![Register preview](https://github.com/IvanMijic0/IMDB-MERN/blob/master/preview/register.png)
+### Popular movies preview
+![Popular movies preview](https://github.com/IvanMijic0/IMDB-MERN/blob/master/preview/popular.png)
+### User profile preview
+![User profile preview](https://github.com/IvanMijic0/IMDB-MERN/blob/master/preview/profile.png)
+### Favorites preview
+![Favorites preview](https://github.com/IvanMijic0/IMDB-MERN/blob/master/preview/favorites.png)
 
 ## Installation
   1. Clone the repository:
