@@ -86,7 +86,7 @@ IMDB-MERN is a project that aims to create a simplified clone of the popular Int
 ## Acknowledgements
   - The frontend was inspired by [PrinceRaaj](https://github.com/PrinceRaaaj)'s project [IMDB-clone-ReactApp](https://github.com/PrinceRaaaj/IMDB-clone-ReactApp).
   
-  
+
   
 
 
